@@ -1,0 +1,20 @@
+import allure
+import pytest
+from pages.question_section_page import QuestionsSectionPage
+from locators.cookie_banner_locator import CookieBannerLocator
+from data import QuestionsData
+from selenium.webdriver.common.by import By
+
+class TestQuestionsSection:
+    @allure.title("Тест соответствия текста ответа на вопрос")
+    @pytest.mark.parametrize('test_case', QuestionsData.questions_and_answers)
+    def test_faq_dropdown(self, driver, test_case):
+        faq_page = QuestionsSectionPage(driver) # Инициализация страницы
+        accept_button = driver.find_element(*CookieBannerLocator.COOKIE_BANNER) # Найти кнопку принятия cookies
+        accept_button.click() # Нажать на кнопку
+        faq_page.scroll_to_element(test_case["question_locator"]) # Скроллим до нужного элемента с вопросом
+        faq_page.click_question(test_case["question_locator"]) # Кликаем по вопросу
+        faq_page.wait_for_attribute # Подождать и проверить, что атрибут элемента содержит текст"
+        actual_text = faq_page.get_answer_text(test_case["answer_locator"]) # Получаем фактический и ожидаемый текст ответа
+        expected_text = test_case["expected_answer"]
+        assert actual_text == expected_text # Проверяем соответствие текста
