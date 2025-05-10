@@ -1,9 +1,6 @@
 import allure
 from pages.base_page import BasePage
 from locators.home_locacators import HomeLocators
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
 
 class HomePage(BasePage):
     @allure.step("Нажать на лого Яндекс")

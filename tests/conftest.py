@@ -12,6 +12,3 @@ def driver():
     driver.get(BASE_URL)
     yield driver
     driver.quit()
-
-
-
