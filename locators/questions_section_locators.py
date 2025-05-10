@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 
 class QuestionsSectionLocators:
     # Локатор раздела "Вопросы о важном"
-    HOME_PAGE_QUESTIONS = (By.ID, "//div[contains(@class, 'Home_SubHeader') and text()='Вопросы о важном']")
+    HOME_PAGE_QUESTIONS = (By.XPATH, "//div[contains(@class, 'Home_SubHeader') and text()='Вопросы о важном']")
 
     # Вопрос: "Сколько это стоит? И как оплатить?"
     QUESTION_COST_PAYMENT = (By.ID, "accordion__heading-0")

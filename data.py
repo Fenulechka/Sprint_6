@@ -1,4 +1,44 @@
 from locators.questions_section_locators import QuestionsSectionLocators
+from locators.order_locacators import OrderLocators
+
+class UsersTestData:
+    # Первый набор данных
+    SET_1 = {
+        # Данные пользователя (для первой формы)
+        "user": {
+            "username": "Иван",
+            "usersurname": "Кличко",
+            "address": "ул. Ленина, 1",
+            "telephone": "+79991112233",
+            "station_locator": (OrderLocators.STATION_LIST_4)  # Локатор для станции 1
+        },
+        # Данные заказа (для второй формы)
+        "order": {
+            "date": "20.05.2025",
+            "period": (OrderLocators.RENTAL_DAYS_4),
+            "color": (OrderLocators.SCOOTER_BLACK),
+            "comment": "Позвонить за час"
+        }
+
+    }
+
+    # Второй набор данных
+    SET_2 = {
+        "user": {
+            "username": "Мария",
+            "usersurname": "Иванова",
+            "address": "пр. Мира, 10-154",
+            "telephone": "+79994445566",
+            "station_locator": (OrderLocators.STATION_LIST_10)  # Локатор для станции 2
+        },
+    "order": {
+        "date": "22.05.2025",
+        "period": (OrderLocators.RENTAL_DAYS_2),
+        "color": (OrderLocators.SCOOTER_GRAY),
+        "comment": "Не звонить"
+        }
+    }
+
 
 class QuestionsData:
     questions_and_answers = [

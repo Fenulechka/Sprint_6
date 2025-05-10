@@ -11,11 +11,15 @@ class BasePage:
     def wait_for_element(self, locator, timeout=10):
         return WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located(locator))
 
+    @allure.step("Базовый метод поиска элемента с ожиданием")
+    def find_element(self, locator, timeout=10):
+        return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located(locator))
+
     @allure.step("Скролл до элемента")
     def scroll_to_element(self, locator):
-        element = self.driver.find_element(*locator)
-        action = ActionChains(self.driver)
-        action.move_to_element(element).perform()
+        element = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(locator))
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
+        return element
 
     @allure.step("Кликнуть на элемент")
     def click_on_element(self, locator, timeout=10):
@@ -23,15 +27,10 @@ class BasePage:
         element.click()
 
     @allure.step("Ввести текст в поле ввода")
-    def send_keys_to_input(self, locator, keys, timeout=10):
-        element = self.wait_for_element(locator, timeout)
+    def input_text(self, locator, text):
+        element = self.find_element(locator)  # Уже содержит распаковку
         element.clear()
-        element.send_keys(keys)
-
-    @allure.step("Получить текст элемента")
-    def get_text_on_element(self, locator, timeout=10):
-        element = self.wait_for_element(locator, timeout)
-        return element.text
+        element.send_keys(text)
 
     @allure.step("Подождать и проверить, что атрибут элемента содержит текст")
     def wait_for_attribute(self, locator, attribute, value, timeout=10):
