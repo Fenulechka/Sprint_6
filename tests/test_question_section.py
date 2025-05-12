@@ -1,7 +1,6 @@
 import allure
 import pytest
 from pages.question_section_page import QuestionsSectionPage
-from locators.cookie_banner_locator import CookieBannerLocator
 from locators.questions_section_locators import QuestionsSectionLocators
 
 from data import QuestionsData
@@ -11,8 +10,7 @@ class TestQuestionsSection:
     @pytest.mark.parametrize('test_case', QuestionsData.questions_and_answers)
     def test_faq_dropdown(self, driver, test_case):
         faq_page = QuestionsSectionPage(driver) # Инициализация страницы
-        accept_button = driver.find_element(*CookieBannerLocator.COOKIE_BANNER) # Найти кнопку принятия cookies
-        accept_button.click() # Нажать на кнопку
+        faq_page.accept_cookies()  # Принятие куков
         faq_page.scroll_to_element(QuestionsSectionLocators.QUESTION_COST_PAYMENT) # Скроллим до нужного элемента с вопросом
         faq_page.wait_for_element(test_case["question_locator"]) # Подождать видимости элемента
         faq_page.click_question(test_case["question_locator"]) # Кликаем по вопросу

@@ -1,10 +1,16 @@
 import allure
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from locators.cookie_banner_locator import CookieBannerLocator
 
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
+
+    @allure.step("Принять куки")
+    def accept_cookies(self):
+        accept_button = self.driver.find_element(*CookieBannerLocator.COOKIE_BANNER)  # Найти кнопку принятия cookies
+        accept_button.click()  # Нажать на кнопку
 
     @allure.step("Подождать видимости элемента")
     def wait_for_element(self, locator, timeout=10):
