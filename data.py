@@ -2,6 +2,8 @@ from locators.questions_section_locators import QuestionsSectionLocators
 from locators.order_locacators import OrderLocators
 
 class UsersTestData:
+    # Текст "Заказ оформлен"
+    ORDER_CONFIRMATION_TEXT = 'Заказ оформлен'
     # Первый набор данных
     SET_1 = {
         # Данные пользователя (для первой формы)

@@ -18,4 +18,4 @@ class TestOrderForm:
         order_page.fill_first_order_form(test_data)
         order_page.fill_second_order_form(test_data["order"])
         confirmation_text = order_page.is_order_successful()
-        assert 'Заказ оформлен' in confirmation_text, f"Ожидался текст 'Заказ оформлен', но получили: {confirmation_text}"
+        assert UsersTestData.ORDER_CONFIRMATION_TEXT in confirmation_text, f"Ожидался текст '{UsersTestData.ORDER_CONFIRMATION_TEXT}', но получили: {confirmation_text}"
